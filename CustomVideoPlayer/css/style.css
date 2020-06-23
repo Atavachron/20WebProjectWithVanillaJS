@@ -43,6 +43,10 @@ h1 {
   border: 0;
 }
 
+.btn:focus {
+  outline: 0;
+}
+
 .fa-play {
   color: green;
 }
