@@ -1,5 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 100vh;
+  background-color: #666;
+  margin: 0;
+}
+
+.screen {
+  cursor: pointer;
+  background-color: black;
+  width: 50%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.controls {
+  width: 50%;
+  background: #333;
+  color: white;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+h1 {
+  color: white;
+}
+
+.btn {
+  background-color: transparent;
+  border: 0;
+}
+
+.fa-play {
+  color: green;
+}
+
+.fa-stop {
+  color: red;
+}
+
+.fa-pause {
+  color: white;
+}
+
+.timestamp {
+  margin-left: 10px;
+}
+
+@media (max-width: 800px) {
+  .screen,
+  .controls {
+    width: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  .screen,
+  .controls {
+    width: 90%;
+  }
 }
