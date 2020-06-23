@@ -47,10 +47,6 @@ label {
   margin-bottom: 5px;
 }
 
-small {
-  display: none;
-}
-
 .form-control input {
   display: block;
   width: 100%;
@@ -83,7 +79,7 @@ small {
 }
 
 .form-control.error small {
-  visibility: visble;
+  visibility: visible;
 }
 
 input[type='submit'] {
