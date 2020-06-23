@@ -12,6 +12,7 @@ video.addEventListener('play', updatePlayIcon);
 video.addEventListener('timeupdate', updatePlayProgress);
 progressBar.addEventListener('change', setVideoProgress);
 
+//Play or stop the video depending on its status
 function toggleVideoStatus() {
   if (video.paused) {
     video.play();
@@ -20,6 +21,7 @@ function toggleVideoStatus() {
   }
 }
 
+//Change the play button to pause button
 function updatePlayIcon() {
   if (video.paused) {
     play.innerHTML = `<i class="fa fa-play fa-2x"></i>`;
@@ -28,10 +30,22 @@ function updatePlayIcon() {
   }
 }
 
-function updatePlayProgress() {}
+function updatePlayProgress() {
+  progress.value = (video.currentTime / video.duration) * 100;
+  console.log(video.currentTime);
+  let mins = Math.floor(video.currentTime / 60);
+  let secs = Math.floor(video.currentTime % 60);
 
-function setVideoProgress() {}
+  timestamp.innerHTML = `${mins
+    .toString()
+    .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
 
+function setVideoProgress() {
+  video.currentTime = (+progress.value / 100) * video.duration;
+}
+
+//Stop the video
 function stopVideo() {
   video.currentTime = 0;
   video.pause();
