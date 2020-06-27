@@ -5,6 +5,9 @@ const count = document.querySelector('.count');
 const total = document.querySelector('.total');
 let ticketPrice = Number(movie.value);
 
+//Populate the UI when the app starts
+populateUI();
+
 //Update the total seats and update local storage
 function updateTotal() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
@@ -26,6 +29,25 @@ function updateMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMoviePrice', moviePrice);
 }
 
+//Get items from local storage and populate the User Interface
+function populateUI() {
+  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+
+  //Check if the item exists in local storage and that it is not empty
+  if (selectedSeats !== null && selectedSeats.length > 0) {
+    seats.forEach((seat, index) => {
+      if (selectedSeats.includes(index)) {
+        seat.classList.add('selected');
+      }
+    });
+  }
+
+  const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+  if (selectedMovieIndex !== null) {
+    movie.selectedIndex = selectedMovieIndex;
+  }
+}
+
 container.addEventListener('click', e => {
   if (
     e.target.classList.contains('seat') &&
@@ -41,3 +63,6 @@ movie.addEventListener('change', e => {
   updateMovieData(e.target.selectedIndex, e.target.value);
   updateTotal();
 });
+
+//Initial update
+updateTotal();
