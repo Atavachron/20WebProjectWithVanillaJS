@@ -13,7 +13,7 @@
       <p>Choose currency and amount</p>
       <div class="currency-container">
         <div class="currency">
-          <select id="currency-one">
+          <select id="currency1">
             <option value="AED">AED</option>
             <option value="ARS">ARS</option>
             <option value="AUD">AUD</option>
@@ -67,14 +67,14 @@
             <option value="VND">VND</option>
             <option value="ZAR">ZAR</option>
           </select>
-          <input type="number" id="amount1" value="1" placeholder="0" />
+          <input type="number" id="amount1" value="1" placeholder="0" min="0" />
         </div>
-        <div class="currency swap-container">
+        <div class="swap-container">
           <button id="swap-btn" class="btn">Swap</button>
           <div class="rate"></div>
         </div>
         <div class="currency">
-          <select id="currency-two">
+          <select id="currency2">
             <option value="AED">AED</option>
             <option value="ARS">ARS</option>
             <option value="AUD">AUD</option>
@@ -128,7 +128,7 @@
             <option value="VND">VND</option>
             <option value="ZAR">ZAR</option>
           </select>
-          <input type="number" id="amount-two" placeholder="0" />
+          <input type="number" id="amount2" placeholder="0" disabled="true" />
         </div>
       </div>
     </div>
