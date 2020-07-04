@@ -72,7 +72,14 @@ function sortByRichest() {
   updateDOM();
 }
 
+function showMillionaires() {
+  data = data.filter(user => user.wealth >= 1000000);
+
+  updateDOM();
+}
+
 //Event Listeners
 $addUser.addEventListener('click', getUser);
 $doubleMoney.addEventListener('click', doubleMoney);
 $sort.addEventListener('click', sortByRichest);
+$showMillionaires.addEventListener('click', showMillionaires);
