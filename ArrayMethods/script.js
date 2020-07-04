@@ -10,7 +10,10 @@ const $main = document.getElementById('main');
 //An Array with the user name and wealth
 const data = [];
 
-$addUser.addEventListener('click', getUser);
+//Generate three users
+getUser();
+getUser();
+getUser();
 
 //Get a random user from the Random User API and generate wealth
 
@@ -27,7 +30,35 @@ async function getUser() {
   addData(newUser);
 }
 
-//Add the new user to the data array
+//Add the new user to the data array and updates DOM
 function addData(newUser) {
   data.push(newUser);
+
+  updateDOM();
 }
+
+function updateDOM(providedData = data) {
+  //Clear the main element
+  $main.innerHTML = `<h2><strong>Person</strong>Wealth</h2>`;
+
+  providedData.forEach(user => {
+    const elem = document.createElement('div');
+    elem.classList.add('person');
+    elem.innerHTML = `<strong>${user.name}</strong> ${formatAsMoney(
+      user.wealth
+    )}`;
+    $main.appendChild(elem);
+  });
+}
+
+//Format the number as money
+
+function formatAsMoney(num) {
+  return new Intl.NumberFormat('en-EN', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(num);
+}
+
+//Event Listeners
+$addUser.addEventListener('click', getUser);
