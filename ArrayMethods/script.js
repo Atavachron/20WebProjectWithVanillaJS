@@ -78,8 +78,19 @@ function showMillionaires() {
   updateDOM();
 }
 
+function calculateTotal() {
+  const totalWealth = data.reduce((acc, cur) => acc + cur.wealth, 0);
+
+  const wealthElement = document.createElement('div');
+  wealthElement.innerHTML = `<h3>Combined Wealth: <strong>${formatAsMoney(
+    totalWealth
+  )}</strong></h3>`;
+  $main.appendChild(wealthElement);
+}
+
 //Event Listeners
 $addUser.addEventListener('click', getUser);
 $doubleMoney.addEventListener('click', doubleMoney);
 $sort.addEventListener('click', sortByRichest);
 $showMillionaires.addEventListener('click', showMillionaires);
+$calculateTotal.addEventListener('click', calculateTotal);
