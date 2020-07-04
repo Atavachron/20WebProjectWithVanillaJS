@@ -8,7 +8,7 @@ const $calculateTotal = document.getElementById('calculateTotal');
 const $main = document.getElementById('main');
 
 //An Array with the user name and wealth
-const data = [];
+let data = [];
 
 //Generate three users
 getUser();
@@ -60,5 +60,12 @@ function formatAsMoney(num) {
   }).format(num);
 }
 
+function doubleMoney() {
+  data = data.map(user => ({ ...user, wealth: user.wealth * 2 }));
+
+  updateDOM();
+}
+
 //Event Listeners
 $addUser.addEventListener('click', getUser);
+$doubleMoney.addEventListener('click', doubleMoney);
