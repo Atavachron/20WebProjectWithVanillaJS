@@ -14,6 +14,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: Montserrat, sans-serif;
+  transition: all 0.5s ease;
+}
+
+.show-nav {
+  transform: translateX(200px);
 }
 
 button,
@@ -67,4 +72,133 @@ nav ul li a {
 
 nav ul li a:hover {
   text-decoration: underline;
+}
+
+/*               */
+/* Header Styles */
+/*               */
+
+header {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 40px 15px;
+  position: relative;
+  font-size: 130%;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  margin: 30px 0;
+}
+
+button,
+input[type='submit'] {
+  padding: 8px 12px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  background: var(--secondary-color);
+  border-radius: 5px;
+}
+
+.toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.cta-btn {
+  padding: 12px 30px;
+  font-size: 1.25rem;
+}
+
+/* Main Area Styles */
+
+.container {
+  padding: 15px;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 800px;
+}
+
+/* Modal Styles */
+
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-container.show-modal {
+  display: block;
+}
+
+.modal {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  width: 400px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+}
+
+.modal-header {
+  background: var(--primary-color);
+  padding: 15px;
+  color: white;
+}
+
+.modal-header h3 {
+  margin: 0;
+}
+
+.modal-content {
+  padding: 1.25em;
+}
+
+.modal-form div {
+  margin: 15px 0;
+}
+
+.modal-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal-form .form-input {
+  padding: 8px;
+  width: 100%;
+}
+
+.close-btn {
+  background: transparent;
+  font-size: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
