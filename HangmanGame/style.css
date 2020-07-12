@@ -116,8 +116,12 @@ button:active {
   padding: 15px 20px;
   border-radius: 10px 10px 0 0;
   position: absolute;
+  left: 40%;
+  right: 40%;
+  margin: 0 auto;
   bottom: -55px;
   transition: transform 0.3s ease-in-out;
+  text-align: center;
 }
 
 .notification-container p {
