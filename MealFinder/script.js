@@ -6,12 +6,21 @@ const $resultHeading = document.getElementById('result-heading');
 const $singleMeal = document.getElementById('single-meal');
 
 $submit.addEventListener('submit', searchMeal);
-$random.addEventListener('click', randomMeal);
+$random.addEventListener('click', getRandomMeal);
 
 async function getMealById(mealID) {
   const res = await fetch(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`
   );
+  const data = await res.json();
+  const meal = data.meals[0];
+  addMealToDOM(meal);
+}
+
+async function getRandomMeal() {
+  $meals.innerHTML = '';
+  $resultHeading.innerHTML = '';
+  const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
   const data = await res.json();
   const meal = data.meals[0];
   addMealToDOM(meal);
