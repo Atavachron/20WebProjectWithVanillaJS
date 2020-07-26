@@ -6,6 +6,7 @@ const $resultHeading = document.getElementById('result-heading');
 const $singleMeal = document.getElementById('single-meal');
 
 $submit.addEventListener('submit', searchMeal);
+$random.addEventListener('click', randomMeal);
 
 async function getMealById(mealID) {
   const res = await fetch(
@@ -28,7 +29,7 @@ function addMealToDOM(meal) {
     }
   }
   $singleMeal.innerHTML = `
-    <div class="singleMeal">
+    <div class="single-meal">
       <h1>${meal.strMeal}</h1>
       <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
       <div class="single-meal-info">
