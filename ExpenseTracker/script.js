@@ -20,14 +20,11 @@ let transactions = testTransactions;
 function addTransactionToDOM(transaction) {
   //Create a new list element
   let li = document.createElement('li');
-  //Add the respective class, depending on the amount
-  if (transaction.amount < 0) {
-    li.classList.add('minus');
-  } else {
-    li.classList.add('plus');
-  }
-  //Set the inner html of the new list item to the desired format
 
+  //Add the respective class to the list item, depending on the amount (positive or negative)
+  li.classList.add(transaction.amount < 0 ? 'minus' : 'plus');
+
+  //Set the inner html of the new list item to the desired format
   li.innerHTML = `
   ${transaction.text}<span>${transaction.amount}</span><button class="delete-btn">x</button>`;
 
