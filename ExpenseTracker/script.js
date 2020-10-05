@@ -32,12 +32,35 @@ function addTransactionToDOM(transaction) {
   list.appendChild(li);
 }
 
+function updateValues() {
+  const amounts = transactions.map(transaction => transaction.amount);
+
+  const total = amounts.reduce((total, amount) => total + amount, 0).toFixed(2);
+
+  const income = amounts
+    .filter(amount => amount > 0)
+    .reduce((total, amount) => total + amount, 0)
+    .toFixed(2);
+
+  const expense = (
+    amounts
+      .filter(amount => amount < 0)
+      .reduce((total, amount) => total + amount, 0) * -1
+  ).toFixed(2);
+
+  //Add the calculated amounts to the DOM
+  balance.innerText = `$${total}`;
+  moneyPlus.innerText = `$${income}`;
+  moneyMinus.innerText = `$${expense}`;
+}
+
 function init() {
   //Clear the displayed history when the init function runs
   list.innerHTML = '';
 
   //Display the transactions in the history
   transactions.forEach(addTransactionToDOM);
+  updateValues();
 }
 
 init();
