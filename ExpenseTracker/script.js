@@ -8,14 +8,19 @@ const form = document.querySelector('#form');
 const text = document.querySelector('#text');
 const amount = document.querySelector('#amount');
 
-const testTransactions = [
-  { id: 1, text: 'Groceries', amount: -50 },
-  { id: 2, text: 'Salary', amount: 2000 },
-  { id: 3, text: 'Book', amount: -60 },
-  { id: 4, text: 'Lottery', amount: 1000 },
-];
+// const testTransactions = [
+//   { id: 1, text: 'Groceries', amount: -50 },
+//   { id: 2, text: 'Salary', amount: 2000 },
+//   { id: 3, text: 'Book', amount: -60 },
+//   { id: 4, text: 'Lottery', amount: 1000 },
+// ];
 
-let transactions = testTransactions;
+const localStorageTransactions = JSON.parse(
+  localStorage.getItem('transactions')
+);
+
+let transactions =
+  localStorage.getItem('transactions') !== null ? localStorageTransactions : [];
 
 function addTransaction(e) {
   e.preventDefault();
@@ -39,7 +44,11 @@ function addTransaction(e) {
     //Add the new transaction to the DOM
     addTransactionToDOM(transaction);
 
+    //Update displayed values on the page
     updateValues();
+
+    //Update the local storage
+    updateLocalStorage();
 
     //Reset the form
     form.reset();
@@ -64,6 +73,10 @@ function addTransactionToDOM(transaction) {
 function removeTransaction(id) {
   transactions = transactions.filter(transaction => transaction.id !== id);
 
+  //Update the local storage
+  updateLocalStorage();
+
+  //Call the init function that will update the DOM
   init();
 }
 
@@ -87,6 +100,11 @@ function updateValues() {
   balance.innerText = `$${total}`;
   moneyPlus.innerText = `$${income}`;
   moneyMinus.innerText = `$${expense}`;
+}
+
+//Update local storage
+function updateLocalStorage() {
+  localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 function init() {
