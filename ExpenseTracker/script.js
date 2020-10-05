@@ -17,6 +17,35 @@ const testTransactions = [
 
 let transactions = testTransactions;
 
+function addTransaction(e) {
+  e.preventDefault();
+
+  //Check if empty values
+
+  if (text.value.trim() === '' || amount.value.trim() === '') {
+    alert('Please, enter text and amount');
+  } else {
+    //Generate an id, that will be bigger by one from the id of the last transaction in the array
+    const id = transactions.length
+      ? transactions[transactions.length - 1].id + 1
+      : 1;
+
+    //Create the new transaction, giving it, id, the text and the amount from the form
+    const transaction = { id, text: text.value, amount: Number(amount.value) };
+
+    //Add the transaction to the transactions array
+    transactions.push(transaction);
+
+    //Add the new transaction to the DOM
+    addTransactionToDOM(transaction);
+
+    updateValues();
+
+    //Reset the form
+    form.reset();
+  }
+}
+
 function addTransactionToDOM(transaction) {
   //Create a new list element
   let li = document.createElement('li');
@@ -26,10 +55,16 @@ function addTransactionToDOM(transaction) {
 
   //Set the inner html of the new list item to the desired format
   li.innerHTML = `
-  ${transaction.text}<span>${transaction.amount}</span><button class="delete-btn">x</button>`;
+  ${transaction.text}<span>${transaction.amount}</span><button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>`;
 
   //Append the list item to the unordered list
   list.appendChild(li);
+}
+
+function removeTransaction(id) {
+  transactions = transactions.filter(transaction => transaction.id !== id);
+
+  init();
 }
 
 function updateValues() {
@@ -64,3 +99,5 @@ function init() {
 }
 
 init();
+
+form.addEventListener('submit', addTransaction);
