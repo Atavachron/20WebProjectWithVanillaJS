@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+    0deg,
+    rgba(247, 247, 247, 1) 24%,
+    rgba(250, 220, 221, 1) 92%
+  );
+}
+
+.music-container {
+  background-color: white;
+  display: flex;
+  border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.5);
+  padding: 30px;
+  margin: 50px 0;
+  z-index: 10;
+  position: relative;
+}
+
+.img-container {
+  width: 110px;
+  position: relative;
+}
+
+.img-container::after {
+  content: '';
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  bottom: 100%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, 50%);
+}
+
+img {
+  border-radius: 50%;
+  height: 110px;
+  width: 110px;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.music-container.play img {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.action-btn {
+  border: none;
+  background-color: white;
+  font-size: 20px;
+  color: lightgray;
+  margin: 0 20px;
+  padding: 10px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.action-btn-big {
+  font-size: 30px;
+  color: #cdc2d0;
+}
+
+.music-info {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  transform: translateY(0%);
+  transition: transform 0.4s ease-in, opacity 0.4s ease-in;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 170px;
+  border-radius: 15px 15px 0 0;
+}
+
+h4 {
+  margin: 0;
+}
+
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.progress-container {
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 4px;
+  width: 100%;
+}
+
+.progress {
+  background-color: pink;
+  border-radius: 5px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+}
