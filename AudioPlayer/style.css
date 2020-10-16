@@ -19,14 +19,14 @@ body {
 }
 
 .music-container {
+  position: relative;
   background-color: white;
   display: flex;
   border-radius: 15px;
   box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.5);
-  padding: 30px;
-  margin: 50px 0;
+  padding: 20px 30px;
+  margin: 100px 0;
   z-index: 10;
-  position: relative;
 }
 
 .img-container {
@@ -48,9 +48,9 @@ body {
 
 img {
   border-radius: 50%;
+  object-fit: cover;
   height: 110px;
   width: 110px;
-  object-fit: cover;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -70,6 +70,13 @@ img {
   to {
     transform: rotate(360deg);
   }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
 
 .action-btn {
