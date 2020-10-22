@@ -2,8 +2,8 @@ const postsContainer = document.querySelector('#posts-container');
 const filter = document.querySelector('#filter');
 const loader = document.querySelector('.loader');
 
-const limit = 3;
-const page = 1;
+const limit = 5;
+let page = 1;
 
 async function getPosts() {
   const res = await fetch(
@@ -32,4 +32,25 @@ async function displayPosts() {
   });
 }
 
+function showLoading() {
+  loader.classList.add('show');
+
+  setTimeout(() => {
+    loader.classList.remove('show');
+
+    setTimeout(() => {
+      page++;
+      displayPosts();
+    }, 300);
+  }, 1000);
+}
+
 displayPosts();
+
+window.addEventListener('scroll', () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    showLoading();
+  }
+});
