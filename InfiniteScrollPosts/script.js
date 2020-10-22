@@ -45,6 +45,22 @@ function showLoading() {
   }, 1000);
 }
 
+function filterPosts(e) {
+  const input = e.target.value.toLowerCase();
+  const posts = document.querySelectorAll('.post');
+
+  posts.forEach(post => {
+    const title = post.querySelector('.post-title').innerText.toLowerCase();
+    const body = post.querySelector('.post-body').innerText.toLowerCase();
+
+    if (title.includes(input) || body.includes(input)) {
+      post.style.display = 'flex';
+    } else {
+      post.style.display = 'none';
+    }
+  });
+}
+
 displayPosts();
 
 window.addEventListener('scroll', () => {
@@ -54,3 +70,5 @@ window.addEventListener('scroll', () => {
     showLoading();
   }
 });
+
+filter.addEventListener('input', filterPosts);
