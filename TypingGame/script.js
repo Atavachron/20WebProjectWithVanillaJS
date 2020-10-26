@@ -62,6 +62,9 @@ const words = [
   'ruc',
 ];
 
+//Focus the cursor on the input field
+text.focus();
+
 //Declare a variable to hold a random word
 let randomWord;
 
@@ -70,6 +73,9 @@ let score = 0;
 
 //Initialize the time
 let time = 10;
+
+//Start the timer cuntdown
+const timer = setInterval(updateTime, 1000);
 
 //Declare a function to get a random word from the list
 function getRandomWord() {
@@ -94,6 +100,31 @@ function updateScore() {
   scoreEl.innerText = score;
 }
 
+//Function to update the time
+function updateTime() {
+  //Update the time variable
+  time--;
+  //Update time element
+  timeEl.innerText = `${time}s`;
+
+  //Check if the time has ran out
+  if (time === 0) {
+    //Clear the interval
+    clearInterval(timer);
+    //Run the gameOver function
+    gameOver();
+  }
+}
+
+function gameOver() {
+  endgameEl.innerHTML = `
+    <h1>Time is up!</h1>
+    <p>Your final score is ${score}</p>
+    <button onclick="location.reload()">Restart</button>
+  `;
+  endgameEl.style.display = 'flex';
+}
+
 addWordToDom();
 
 //Event listener on the input element, that will run every time an input is made
@@ -107,7 +138,15 @@ text.addEventListener('input', e => {
     //Update the score
     updateScore();
 
+    //Update the time
+    updateTime();
+
     //Clear the input field
     e.target.value = '';
+
+    //Increment the time by 5 seconds
+    time += 5;
+    //Update the time with the new value (note that the setInterval is still running)
+    updateTime();
   }
 });
