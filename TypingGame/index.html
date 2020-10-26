@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Typing Game</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-    crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <title>Typing Game</title>
-</head>
+  <body>
+    <div class="settings" id="settings">
+      <form id="settings-form">
+        <label for="difficulty">Difficulty</label>
+        <select name="difficulty" id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </form>
+    </div>
 
-<body>
-  <div class="settings" id="settings">
-    <form id="settings-form">
-      <label for="difficulty">Difficulty</label>
-      <select name="difficulty" id="difficulty">
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-    </form>
-  </div>
+    <div class="container">
+      <h2>Speed Typer</h2>
+      <p class="time-container">Time left: <span id="time">10s</span></p>
+      <p class="score-container">Score: <span id="score">0</span></p>
+      <small>Type the following:</small>
+      <h1 id="word"></h1>
+      <input
+        type="text"
+        id="text"
+        placeholder="Type the word here..."
+        autocomplete="off"
+      />
 
-  <div class="container">
-    <h2>Speed Typer</h2>
-    <p class="time-container">
-      Time left: <span id="time">10s</span>
-    </p>
-    <p class="score-container">
-      Score: <span id="score">0</span>
-    </p>
-    <small>Type the following:</small>
-    <h1 id="word">aksdja</h1>
-    <input type="text" id="text" placeholder="Type the word here..." autocomplete="off">
+      <div id="end-game-container" class="end-game-container"></div>
+    </div>
 
-    <div id="end-game-container" class="end-game-container"></div>
-  </div>
+    <button class="settings-btn" id="settings-btn">
+      <i class="fas fa-cog"></i>
+    </button>
 
-  <button class="settings-btn" id="setting-btn"><i class="fas fa-cog"></i></button>
-
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
