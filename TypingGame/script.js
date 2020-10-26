@@ -74,6 +74,18 @@ let score = 0;
 //Initialize the time
 let time = 10;
 
+//Set the difficulty from local storage if saved or medium
+let difficulty =
+  localStorage.getItem('difficulty') !== null
+    ? localStorage.getItem('difficulty')
+    : 'medium';
+
+//Set the value of the difficulty select element
+difficultySelect.value =
+  localStorage.getItem('difficulty') !== null
+    ? localStorage.getItem('difficulty')
+    : 'medium';
+
 //Start the timer cuntdown
 const timer = setInterval(updateTime, 1000);
 
@@ -116,6 +128,7 @@ function updateTime() {
   }
 }
 
+//Show game over screen
 function gameOver() {
   endgameEl.innerHTML = `
     <h1>Time is up!</h1>
@@ -141,9 +154,33 @@ text.addEventListener('input', e => {
     //Clear the input field
     e.target.value = '';
 
-    //Increment the time by 5 seconds
-    time += 5;
+    //Increment the time depending on difficultyss
+    switch (difficulty) {
+      case 'easy':
+        time += 8;
+        break;
+      case 'medium':
+        time += 5;
+        break;
+      case 'hard':
+        time += 2;
+        break;
+    }
+
     //Update the time with the new value (note that the setInterval is still running)
     updateTime();
   }
+});
+
+//Toggle settings menu by adding/removing the class of hidden
+settingsBtn.addEventListener('click', e => {
+  settings.classList.toggle('hidden');
+});
+
+settingsForm.addEventListener('change', e => {
+  difficulty = e.target.value;
+
+  //Set the difficulty in local storage
+
+  localStorage.setItem('difficulty', difficulty);
 });
