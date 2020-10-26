@@ -138,9 +138,6 @@ text.addEventListener('input', e => {
     //Update the score
     updateScore();
 
-    //Update the time
-    updateTime();
-
     //Clear the input field
     e.target.value = '';
 
