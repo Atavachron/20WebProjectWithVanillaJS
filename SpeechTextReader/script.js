@@ -64,6 +64,7 @@ const data = [
 //Run the createBox function for every element of the data array
 data.forEach(createBox);
 
+//Create a function that will create and display a box with the image and the text
 function createBox(item) {
   //use destructuring to access the image and text properties of the item passed as an argument
   const { image, text } = item;
@@ -79,5 +80,7 @@ function createBox(item) {
     <img src="${image}" alt="${text}" />
     <p class="info">${text}</p> 
   `;
+
+  //Append the created box to the main element
   main.appendChild(box);
 }
