@@ -57,7 +57,7 @@ const data = [
   },
   {
     image: './img/tired.jpg',
-    text: "I'm angry",
+    text: "I'm tired",
   },
 ];
 
