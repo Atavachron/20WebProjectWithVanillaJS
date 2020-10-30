@@ -81,9 +81,21 @@ function createBox(item) {
     <p class="info">${text}</p> 
   `;
 
+  box.addEventListener('click', () => {
+    setTextMessage(text);
+    speakText();
+
+    box.classList.add('active');
+    setTimeout(() => box.classList.remove('active'), 700);
+  });
+
   //Append the created box to the main element
   main.appendChild(box);
 }
+
+//Initialize speech synthesiser
+
+const message = new SpeechSynthesisUtterance();
 
 //Create an array that will hold the voices
 let voices = [];
@@ -100,6 +112,16 @@ function getVoices() {
 
     voicesSelect.appendChild(option);
   });
+}
+
+//Set the text to be spoken
+function setTextMessage(text) {
+  message.text = text;
+}
+
+//Speak the text
+function speakText() {
+  speechSynthesis.speak(message);
 }
 
 //Show and hide text box by adding/removing the .show class
