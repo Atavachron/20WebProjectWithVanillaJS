@@ -85,4 +85,28 @@ function createBox(item) {
   main.appendChild(box);
 }
 
+//Create an array that will hold the voices
+let voices = [];
+
+//Create a function that will get the voices and add them to the voices array
+function getVoices() {
+  voices = speechSynthesis.getVoices();
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+
+    option.value = voice.name;
+    option.innerText = `${voice.name} ${voice.lang}`;
+
+    voicesSelect.appendChild(option);
+  });
+}
+
+//Show and hide text box by adding/removing the .show class
 toggleBtn.addEventListener('click', () => textBox.classList.toggle('show'));
+closeBtn.addEventListener('click', () => textBox.classList.remove('show'));
+
+//Voices changed
+speechSynthesis.addEventListener('voiceschanged', getVoices);
+
+getVoices();
