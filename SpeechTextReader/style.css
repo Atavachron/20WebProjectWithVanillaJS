@@ -106,7 +106,6 @@ main {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-
   transition: box-shadow 0.2s ease-in-out;
 }
 
