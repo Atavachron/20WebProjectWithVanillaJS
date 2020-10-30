@@ -131,4 +131,15 @@ closeBtn.addEventListener('click', () => textBox.classList.remove('show'));
 //Voices changed
 speechSynthesis.addEventListener('voiceschanged', getVoices);
 
+//Change the selected voice
+voicesSelect.addEventListener('change', e => {
+  message.voice = voices.find(voice => voice.name === e.target.value);
+});
+
+//Read text from the text area
+readBtn.addEventListener('click', () => {
+  setTextMessage(textarea.value);
+  speakText();
+});
+
 getVoices();
