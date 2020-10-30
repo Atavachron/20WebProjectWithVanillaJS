@@ -59,6 +59,10 @@ h1 {
   transition: all 0.5s ease-in;
 }
 
+.text-box.show {
+  transform: translate(-50%, 0);
+}
+
 .close {
   font-weight: bold;
   font-size: 20px;

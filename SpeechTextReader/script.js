@@ -84,3 +84,5 @@ function createBox(item) {
   //Append the created box to the main element
   main.appendChild(box);
 }
+
+toggleBtn.addEventListener('click', () => textBox.classList.toggle('show'));
