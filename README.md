@@ -1,1 +1,3 @@
-# 20 Web Projects With Vanill JavaScript
+# 20 Web Projects With Vanilla JavaScript
+
+## From the Udemy Course by Brad Traversy
