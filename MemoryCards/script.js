@@ -12,9 +12,8 @@ const $addCardBtn = document.getElementById('add-card');
 const $clearBtn = document.getElementById('clear');
 const $addContainer = document.getElementById('add-container');
 
-//Create a variable to keep track of the current card
-
-let currentCard = 0;
+//Create a variable to keep track of the number of the current card
+let currentActiveCard = 0;
 
 //Create an array to hold the DOM cards
 
@@ -60,11 +59,24 @@ function createCard(data, index) {
   </div>
 `;
 
+  //Add an event listener to the card that will add the .show-answer class to flip the card
+  card.addEventListener('click', () => {
+    card.classList.toggle('show-answer');
+  });
+
   //Add the new card to the cards elements array
   cardsEl.push(card);
 
   //Append the card to the cards container
   $cardsContainer.appendChild(card);
+
+  //Call the function showing the number of cards in the $currentEl element
+  updateCurrentEl();
+}
+
+//Show current card and number of cards by calculating the length of the card elements array
+function updateCurrentEl() {
+  $currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
 }
 
 createCards();
