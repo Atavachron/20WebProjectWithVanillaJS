@@ -31,6 +31,10 @@ const cardsData = [
     question: 'What is PHP?',
     answer: 'A programming language',
   },
+  {
+    question: 'What is a variable?',
+    answer: 'A container for data',
+  },
 ];
 
 //Function that will loop through the cards data and call a function creating a card for each one
@@ -81,16 +85,17 @@ function updateCurrentEl() {
 
 createCards();
 
+//Event Listeners
 $nextBtn.addEventListener('click', () => {
   cardsEl[currentActiveCard].className = 'card left';
 
   currentActiveCard = currentActiveCard + 1;
 
   if (currentActiveCard > cardsEl.length - 1) {
-    currentActiveCard = cards.length - 1;
+    currentActiveCard = cardsEl.length;
   }
 
-  cardsEl[currentActiveCard].clasName = 'card active';
+  cardsEl[currentActiveCard].className = 'card active';
 
   updateCurrentEl();
 });
@@ -104,7 +109,7 @@ $prevBtn.addEventListener('click', () => {
     currentActiveCard = 0;
   }
 
-  cardsEl[currentActiveCard].clasName = 'card active';
+  cardsEl[currentActiveCard].className = 'card active';
 
   updateCurrentEl();
 });
