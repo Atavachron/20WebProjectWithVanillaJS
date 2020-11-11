@@ -80,3 +80,31 @@ function updateCurrentEl() {
 }
 
 createCards();
+
+$nextBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card left';
+
+  currentActiveCard = currentActiveCard + 1;
+
+  if (currentActiveCard > cardsEl.length - 1) {
+    currentActiveCard = cards.length - 1;
+  }
+
+  cardsEl[currentActiveCard].clasName = 'card active';
+
+  updateCurrentEl();
+});
+
+$prevBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card right';
+
+  currentActiveCard = currentActiveCard - 1;
+
+  if (currentActiveCard < 0) {
+    currentActiveCard = 0;
+  }
+
+  cardsEl[currentActiveCard].clasName = 'card active';
+
+  updateCurrentEl();
+});
