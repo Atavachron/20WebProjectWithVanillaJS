@@ -165,6 +165,7 @@ h1 button {
   top: 0;
   bottom: 0;
   transition: 0.3s ease;
+  width: 100%;
 }
 
 .add-container.show {

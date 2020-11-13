@@ -21,21 +21,7 @@ const cardsEl = [];
 
 //Create an array to store the cards data
 
-const cardsData = [
-  {
-    question: 'What is JS?',
-    answer: 'A programming language',
-  },
-
-  {
-    question: 'What is PHP?',
-    answer: 'A programming language',
-  },
-  {
-    question: 'What is a variable?',
-    answer: 'A container for data',
-  },
-];
+const cardsData = getCardsData();
 
 //Function that will loop through the cards data and call a function creating a card for each one
 function createCards() {
@@ -83,6 +69,19 @@ function updateCurrentEl() {
   $currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
 }
 
+//Function to get the items from local storage
+function getCardsData() {
+  const cards = JSON.parse(localStorage.getItem('cards'));
+  return cards === null ? [] : cards;
+}
+
+function setCardsData(cards) {
+  localStorage.setItem('cards', JSON.stringify(cards));
+
+  //Reload the page
+  window.location.reload();
+}
+
 createCards();
 
 //Event Listeners
@@ -112,4 +111,37 @@ $prevBtn.addEventListener('click', () => {
   cardsEl[currentActiveCard].className = 'card active';
 
   updateCurrentEl();
+});
+
+$showBtn.addEventListener('click', () => {
+  $addContainer.classList.add('show');
+});
+
+$hideBtn.addEventListener('click', () => {
+  $addContainer.classList.remove('show');
+});
+
+$addCardBtn.addEventListener('click', () => {
+  const question = $questionEl.value;
+  const answer = $answerEl.value;
+
+  if (question.trim() && answer.trim()) {
+    const newCard = { question, answer };
+
+    createCard(newCard);
+
+    $questionEl.value = '';
+    $answerEl.value = '';
+
+    $addContainer.classList.remove('show');
+
+    cardsData.push(newCard);
+    setCardsData(cardsData);
+  }
+});
+
+$clearBtn.addEventListener('click', () => {
+  localStorage.removeItem('cards');
+  $cardsContainer.innerHTML = '';
+  window.location.reload();
 });
