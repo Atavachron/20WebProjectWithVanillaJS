@@ -1,3 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+header {
+  background-image: url('https://images.unsplash.com/photo-1471478331149-c72f17e33c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 100px 0;
+  color: white;
+  /* Center all the children by making it a flex container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Add position relative so that we can position items inside it with position absolute */
+  position: relative;
+}
+
+/* Create an overlay to cover the header in order to reduce its brightness */
+header::after {
+  content: '';
+  /* Give absolute position in order to place it in the header which has position relative*/
+  position: absolute;
+  /* Make the pseudo element cover exactly the header */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /* Give it some transparency */
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* With the overlay, the text and the elements in the header will be darker */
+/* In order to avoid this, select all elements in the header and give them a z-index */
+header * {
+  z-index: 1;
+}
+
+header h1 {
+  margin: 0 0 30px;
 }
