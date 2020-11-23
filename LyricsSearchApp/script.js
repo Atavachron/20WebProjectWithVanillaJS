@@ -45,4 +45,23 @@ function showData(data) {
       ${output}
     </ul>
   `;
+
+  if (data.prev || data.next) {
+    more.innerHTML = `
+      ${data.prev ? `<button class="btn" onclick="getMoreSongs('${data.prev}')">Previous</button>` : ''}
+      ${data.next ? `<button class="btn" onclick="getMoreSongs('${data.next}')">Next</button>` : ''}
+    `;
+  } else {
+    more.innerHTML = '';
+  }
+} 
+
+
+//Get previous and next songs
+async function getMoreSongs(url) {
+  //Use cors-anywhere.herokuapp.com proxy to prevent CORS errors
+  const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
+  const data = await res.json();
+
+  showData(data);
 }
