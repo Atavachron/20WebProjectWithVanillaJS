@@ -65,3 +65,25 @@ async function getMoreSongs(url) {
 
   showData(data);
 }
+
+
+//Get the lyrics
+
+async function getLyrics(artist, songTitle) {
+  const res = await fetch(`${url}/v1/${artist}/${songTitle}`);
+  const data = await res.json();
+
+  console.log(data);
+}
+
+//Add an event listener to the parent element of the buttons to get lyrics
+result.addEventListener('click', e => {
+  const clickedEl = e.target;
+
+  if (clickedEl.tagName === "BUTTON") {
+    const artist = clickedEl.getAttribute('data-artist');
+    const songTitle = clickedEl.getAttribute('data-songtitle');
+
+    getLyrics(artist, songTitle)
+  }
+})
