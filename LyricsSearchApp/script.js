@@ -71,9 +71,18 @@ async function getMoreSongs(url) {
 
 async function getLyrics(artist, songTitle) {
   const res = await fetch(`${url}/v1/${artist}/${songTitle}`);
-  const data = await res.json();
+  const data = await res.json();  
 
-  console.log(data);
+  //Replace new line and carriage returns with <br>
+  const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>')
+
+  //Insert the lyrics into the DOM
+  result.innerHTML = `
+    <h2><strong>${artist}</strong> - ${songTitle}</h2>
+    <span>${lyrics}</span>
+  `
+  more.innerHTML = ''
+
 }
 
 //Add an event listener to the parent element of the buttons to get lyrics
