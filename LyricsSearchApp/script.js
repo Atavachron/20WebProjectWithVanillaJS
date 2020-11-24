@@ -35,7 +35,7 @@ function showData(data) {
     output += `
       <li>
         <span><strong>${song.artist.name}</strong> - ${song.title}</span>
-        <button class="btn" data-artist="${song.artist.name}" data-songtitle={song.title}>Display Lyrics</button>
+        <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Display Lyrics</button>
       </li>
     `;
   });
