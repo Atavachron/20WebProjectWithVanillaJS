@@ -8,8 +8,7 @@ body {
   margin: 0;
   color: white;
   font-family: Montserrat, sans-serif;
-  background: #224941 url('./img/thiago-gomes-K0YuYMAwCTQ-unsplash.jpg')
-    no-repeat center center/cover;
+  background: #224941 url('./img/bg.jpg') no-repeat center center/cover;
   min-height: 100vh;
   overflow: hidden;
   display: flex;
@@ -55,7 +54,8 @@ body {
   width: 320px;
   position: absolute;
   border-radius: 50%;
-  z-index: 2;
+  /* Lower z-index compared to the top circle, in order to be under it as a border */
+  z-index: -2;
   top: -10px;
   left: -10px;
 }
