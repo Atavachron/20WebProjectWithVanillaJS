@@ -6,6 +6,9 @@ const rules = document.getElementById('rules');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+//Set a variable for the score
+let score = 0;
+
 //Create an object with ball properties
 const ball = {
   x: canvas.width / 2,
@@ -25,6 +28,42 @@ function drawBall() {
   ctx.closePath();
 }
 
+// Create an object with paddle properties
+
+const paddle = {
+  x: canvas.width / 2 - 40,
+  y: canvas.height - 20,
+  w: 80,
+  h: 10,
+  speed: 8,
+  dx: 0,
+};
+
+//Draw the paddle on the canvas
+
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h);
+  ctx.fillStyle = '#0095dd';
+  ctx.fill();
+  ctx.closePath();
+}
+
+function drawScore() {
+  ctx.font = '20px Montserrat';
+  ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
+}
+
+//Function that will draw everything on the board
+function draw() {
+  drawBall();
+  drawPaddle();
+  drawScore();
+}
+
+//Call the draw function
+draw();
+
 //Event Handlers for the rules and close buttons
 rulesBtn.addEventListener('click', () => {
   rules.classList.add('show');
@@ -33,5 +72,3 @@ rulesBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
   rules.classList.remove('show');
 });
-
-drawBall();
